@@ -1,52 +1,61 @@
-# Pulumi
+ # AWS TypeScript Pulumi Template
 
-**Different ways to create infrastrcuture in cloud** 
+ A minimal Pulumi template for provisioning AWS infrastructure using TypeScript. This template creates an Amazon S3 bucket and exports its name.
 
-- via UI console of that respective cloud (AWS Console , GCP console , Azure console UI)
-- via CLI (AWS CLI , gcloud CLI , azure cli (az))
-- via python boto3 (via Cloud api's )
-- via IAC (Cloud lockin - AWS Cloudformation)
-- Terraform 
-- Pulumi (Infrastructure via any programming language) 
+ ## Prerequisites
 
+ - Pulumi CLI (>= v3): https://www.pulumi.com/docs/get-started/install/
+ - Node.js (>= 14): https://nodejs.org/
+ - AWS credentials configured (e.g., via `aws configure` or environment variables)
 
-**Introduction** 
+ ## Getting Started
 
-- Pulumi is opensource 
-- Supports 6 programming languages (Go , Java , Nodejs (TS,JS) , Python , C# , YAML)
+ 1. Initialize a new Pulumi project:
 
-Terraform drawbacks are 
-- Its is licensed to closed source now so most companies are migrating to alternative opensource IAC tools 
-- State management is difficult need to maintain state file and remote backend 
-- HCL is a template language which doesnt support looping and conditionals like programming languages 
+    ```bash
+    pulumi new aws-typescript
+    ```
 
+    Follow the prompts to set your:
+    - Project name
+    - Project description
+    - AWS region (defaults to `us-east-1`)
 
-**Getting started** 
+ 2. Preview and deploy your infrastructure:
 
-- Create an account in app.pulumi.com
+    ```bash
+    pulumi preview
+    pulumi up
+    ```
 
-`https://app.pulumi.com/signin?reason=401` 
+ 3. When you're finished, tear down your stack:
 
-- Install pulumi cli 
+    ```bash
+    pulumi destroy
+    pulumi stack rm
+    ```
 
-`https://app.pulumi.com/signin?reason=401` 
+ ## Project Layout
 
-for connecting to AWS account we need to set up AWS credentials in our local machine and for that we can use AWS CLI and run the command `aws configure` and provide the access key and secret key of our AWS account. 
+ - `Pulumi.yaml` — Pulumi project and template metadata
+ - `index.ts` — Main Pulumi program (creates an S3 bucket)
+ - `package.json` — Node.js dependencies
+ - `tsconfig.json` — TypeScript compiler options
 
-https://www.pulumi.com/docs/iac/get-started/aws/
+ ## Configuration
 
-terraform plan = pulumi preview
+ | Key           | Description                             | Default     |
+ | ------------- | --------------------------------------- | ----------- |
+ | `aws:region`  | The AWS region to deploy resources into | `us-east-1` |
 
-terraform apply = pulumi up 
+ Use `pulumi config set <key> <value>` to customize configuration.
 
-terraform workspaces = pulumi stack 
+ ## Next Steps
 
+ - Extend `index.ts` to provision additional resources (e.g., VPCs, Lambda functions, DynamoDB tables).
+ - Explore [Pulumi AWSX](https://www.pulumi.com/docs/reference/pkg/awsx/) for higher-level AWS components.
+ - Consult the [Pulumi documentation](https://www.pulumi.com/docs/) for more examples and best practices.
 
-in stack if you dev it means for development environment and prod for production environment and staging for staging environment and so on. same like teerraform workspaces.
+ ## Getting Help
 
-terraform modules = pulumi components 
-
-State management in pulumi is dont via app.pulumi.com and it is free to use for up to 5 users and 5 stacks.
-
-terraform destroy = pulumi down 
-
+ If you encounter any issues or have suggestions, please open an issue in this repository.
